@@ -1,0 +1,23 @@
+version: '3.4'
+
+services:
+   
+  echoserver:
+    container_name: echoserver
+    hostname: echoserver
+    build:
+      context: ../
+      dockerfile: ./EchoTestServer/Dockerfile
+    command: tail -F anything
+    ports:
+     - "3000:80"
+     
+  echoclient:
+    container_name: echoclient
+    hostname: echoclient
+    build:
+      context: ../
+      dockerfile: ./EchoTestClient/EchoTestClient/Dockerfile
+    restart: always
+    ports:
+     - "3001:80"
